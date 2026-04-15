@@ -14,4 +14,14 @@ $ conda create -n mini-rag python=3.8
 ````bash
 $ conda activate mini-rag
 ````
+## Installation
+### install the required pachages
+````bash
+$ pip install -r requirements.txt
+````
+### Setup the environment variables
+````bash
+$ cp .env.example .env
+````
+set your environment variables in `env` file. like `APP_NAME`,`OPEN_API_KEY`
 
