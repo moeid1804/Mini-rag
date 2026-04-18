@@ -25,3 +25,7 @@ $ cp .env.example .env
 ````
 set your environment variables in `env` file. like `APP_NAME`,`OPEN_API_KEY`
 
+### Run Project
+````bash
+$ uvicorn main:app --reload --host 0.0.0.0 --port 8000
+````
