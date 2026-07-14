@@ -1,14 +1,21 @@
-from pydantic_settings import BaseSettings
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
 class Settings(BaseSettings):
-    API_NAME: str
-    API_VERSION: str
-    OpenAI_API_KEY: str
+    # Use Field(validation_alias=...) to map your specific .env names to your class properties
+    APP_NAME: str = Field(validation_alias="API_NAME")
+    APP_VERSION: str = Field(validation_alias="API_VERSION")
+    OPENAI_API_KEY: str = Field(validation_alias="OpenAI_API_KEY")
 
-    FILE_ALLOWED_TYPES: list  
+    FILE_ALLOWED_TYPES: list
     FILE_MAX_SIZE: int
+    FILE_DEFAULT_CHUNK_SIZE: int = Field(validation_alias="FILE_CHUNK_SIZE")
 
-    class Config:
-        env_file = '.env'
+    # This is the correct Pydantic v2 way to load your .env file
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        extra="ignore"  # This prevents crashes from extra unmapped items
+    )
 
 def get_settings():
-    return Settings()        
+    return Settings()
