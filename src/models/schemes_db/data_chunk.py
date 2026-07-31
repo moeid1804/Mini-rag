@@ -11,3 +11,16 @@ class DataChunk(BaseModel):
     chunk_project_id:ObjectId
     class Config:
         arbitrary_types_allowed = True
+
+    @classmethod
+    def get_data_chunk_indexes(cls):
+        return[
+            {
+            'key':[
+                ('chunk_project_id', 1)
+            ],
+            'name':'chunk_project_id_1',
+            'unique':False
+            }
+        ]
+        
