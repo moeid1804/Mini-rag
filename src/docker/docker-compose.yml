@@ -8,6 +8,10 @@ services:
       - "27017:27017" # Let's change it back to the standard 27017
     volumes:
       - mongo_data:/data/db # <--- Use a named volume here
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+
     restart: always
 
 volumes:
